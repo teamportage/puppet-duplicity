@@ -1,0 +1,35 @@
+#!<%= @shell %>
+
+<%- @env_vars.each do |key,val| -%>
+export <%= key -%>='<%= val %>'
+<%- end -%>
+
+<%- @pre_commands.each do |cmd| -%>
+<%= cmd %>
+<%- end -%>
+
+duplicity \
+  <%- @flags.each do |flag| -%>
+  <%= flag -%> \
+  <%- end -%>
+  <%- @options.each do |key,val| -%>
+  <%= key -%> <%= val -%> \
+  <%- end -%>
+  <%- @directories.each do |dir| -%>
+  --include "<%= dir -%>" \
+  <%- end -%>
+  --exclude '**' \
+  / \
+  <%= @target_url %>
+
+<%- if @remove_older_than != false -%>
+duplicity remove-older-than <%= @remove_older_than -%> <%= @target_url %>
+<%- end -%>
+
+<%- @post_commands.each do |cmd| -%>
+<%= cmd %>
+<%- end -%>
+
+<%- @env_vars.each do |key,val| -%>
+unset <%= key %>
+<%- end -%>
