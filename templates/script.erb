@@ -1,6 +1,6 @@
 #!<%= @shell %>
 
-<%- @env_vars.each do |key,val| -%>
+<%- @_env_vars.sort.each do |key,val| -%>
 export <%= key -%>='<%= val %>'
 <%- end -%>
 
@@ -9,10 +9,10 @@ export <%= key -%>='<%= val %>'
 <%- end -%>
 
 duplicity \
-  <%- @flags.each do |flag| -%>
+  <%- @_flags.each do |flag| -%>
   <%= flag -%> \
   <%- end -%>
-  <%- @options.each do |key,val| -%>
+  <%- @_options.sort.each do |key,val| -%>
   <%= key -%> <%= val -%> \
   <%- end -%>
   <%- @directories.each do |dir| -%>
@@ -23,13 +23,9 @@ duplicity \
   <%= @target_url %>
 
 <%- if @remove_older_than != false -%>
-duplicity remove-older-than <%= @remove_older_than -%> <%= @target_url %>
+duplicity remove-older-than <%= @remove_older_than -%> --no-print-statistics --verbosity error <%= @target_url %>
 <%- end -%>
 
 <%- @post_commands.each do |cmd| -%>
 <%= cmd %>
-<%- end -%>
-
-<%- @env_vars.each do |key,val| -%>
-unset <%= key %>
 <%- end -%>
