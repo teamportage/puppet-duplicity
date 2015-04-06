@@ -43,7 +43,7 @@ describe 'duplicity::job', :type => :define do
       /^  --include "\/home" \\$/,
       /^  --exclude '\*\*' \\$/,
       /^  sftp:\/\/user@backupserver\/some_dir$/,
-      /^duplicity remove-older-than 14D --no-print-statistics --verbosity error sftp:\/\/user@backupserver\/some_dir$/,
+      /^duplicity remove-older-than 14D --force --no-print-statistics --verbosity error sftp:\/\/user@backupserver\/some_dir$/,
       /^rm \/usr\/backups\/mysql.sql$/
     ].each do |line|
       should contain_file("#{script_file}").with_content(line)

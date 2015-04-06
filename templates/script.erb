@@ -23,7 +23,7 @@ duplicity \
   <%= @target_url %>
 
 <%- if @remove_older_than != false -%>
-duplicity remove-older-than <%= @remove_older_than -%> --no-print-statistics --verbosity error <%= @target_url %>
+duplicity remove-older-than <%= @remove_older_than -%> --force --no-print-statistics --verbosity error <%= @target_url %>
 <%- end -%>
 
 <%- @post_commands.each do |cmd| -%>
