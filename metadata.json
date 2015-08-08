@@ -1,0 +1,23 @@
+{
+  "name": "jcotton1123-duplicity",
+  "version": "1.0.0",
+  "author": "Jesse Cotton",
+  "license": "Apache-2.0",
+  "summary": "A module for configuring Duplicity backups",
+  "source": "https://github.com/JCotton1123/puppet-duplicity",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5.0",
+        "6.0"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">=3.2.0 <5.0.0"
+    }
+  ]
+}
