@@ -35,16 +35,16 @@ define duplicity::job::s3 (
   $_target_url = "s3+http://${destination}"
 
   duplicity::job { $name:
-    directories        => $directories,
-    flags              => $flags,
-    options            => $options,
-    env_vars           => $_env_vars,
-    target_url         => $_target_url,
-    remove_older_than  => $remove_older_than,
-    hour               => $hour,
-    minute             => $minute,
-    pre_commands       => $pre_commands,
-    post_commands      => $post_commands,
-    shell              => $shell
+    directories       => $directories,
+    flags             => $flags,
+    options           => $options,
+    env_vars          => $_env_vars,
+    target_url        => $_target_url,
+    remove_older_than => $remove_older_than,
+    hour              => $hour,
+    minute            => $minute,
+    pre_commands      => $pre_commands,
+    post_commands     => $post_commands,
+    shell             => $shell
   }
 }
