@@ -6,4 +6,4 @@ branches:
 rvm:
   - 1.8.7
 env:
-  - PUPPET_VERSION=2.7.23
+  - PUPPET_VERSION=3.8.1
