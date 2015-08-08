@@ -1,8 +1,15 @@
 #!<%= @shell %>
 
+LOCK_FILE=/var/lock/duplicity.$(basename $0).lock
 <%- @_env_vars.sort.each do |key,val| -%>
 export <%= key -%>='<%= val %>'
 <%- end -%>
+
+if [ -f $LOCK_FILE ]; then
+    echo "An existing duplicity job is running"
+    exit 1
+fi
+touch $LOCK_FILE
 
 <%- @pre_commands.each do |cmd| -%>
 <%= cmd %>
@@ -25,6 +32,8 @@ duplicity \
 <%- if @remove_older_than != false -%>
 duplicity remove-older-than <%= @remove_older_than -%> --force --no-print-statistics --verbosity error <%= @target_url %>
 <%- end -%>
+
+rm $LOCK_FILE
 
 <%- @post_commands.each do |cmd| -%>
 <%= cmd %>
