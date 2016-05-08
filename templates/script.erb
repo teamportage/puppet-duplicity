@@ -30,7 +30,15 @@ duplicity \
   <%= @target_url %>
 
 <%- if @remove_older_than != false -%>
-duplicity remove-older-than <%= @remove_older_than -%> --force --no-print-statistics --verbosity error <%= @target_url %>
+duplicity \
+  remove-older-than <%= @remove_older_than -%> \
+  <%- @_flags.each do |flag| -%>
+  <%= flag -%> \
+  <%- end -%>
+  <%- @_options.sort.each do |key,val| -%>
+  <%= key -%> <%= val -%> \
+  <%- end -%>
+  <%= @target_url %>
 <%- end -%>
 
 rm $LOCK_FILE
