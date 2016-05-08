@@ -1,6 +1,6 @@
 {
   "name": "jcotton1123-duplicity",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Jesse Cotton",
   "license": "Apache-2.0",
   "summary": "A module for configuring Duplicity backups",
