@@ -15,6 +15,7 @@ define duplicity::job(
   include ::duplicity
 
   $script_path = "${duplicity::script_directory}/${name}"
+  $log_path = "${duplicity::log_directory}/${name}.log"
 
   $_flags = $flags
   $_options = $options
@@ -29,7 +30,7 @@ define duplicity::job(
   } ->
   cron { $script_path:
     ensure  => present,
-    command => $script_path,
+    command => "${script_path} >${log_path} || echo 'Duplicity backup failed'",
     hour    => $hour,
     minute  => $minute
   }

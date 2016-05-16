@@ -1,7 +1,8 @@
 class duplicity (
   $ensure            = present,
   $packages          = undef,
-  $script_directory  = '/var/spool/duplicity'
+  $script_directory  = '/var/spool/duplicity',
+  $log_directory     = '/var/log/duplicity'
 ) {
 
   if $packages == undef {
@@ -21,6 +22,12 @@ class duplicity (
   }
 
   file { $script_directory:
+    ensure  => 'directory',
+    recurse => true,
+    purge   => true
+  }
+
+  file { $log_directory:
     ensure  => 'directory',
     recurse => true,
     purge   => true

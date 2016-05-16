@@ -18,8 +18,7 @@ describe 'duplicity::job::cloudfiles', :type => :define do
     }
 
     it {
-      should contain_file("#{script_file}") \
-        .with({ 'ensure' => 'file'})
+      should contain_file("#{script_file}").with({ 'ensure' => 'file'})
 
       [
         /^export CLOUDFILES_USERNAME='account'$/,

@@ -19,8 +19,7 @@ describe 'duplicity::job::s3', :type => :define do
   }
 
   it {
-    should contain_file("#{script_file}") \
-      .with({ 'ensure' => 'file'})
+    should contain_file("#{script_file}").with({ 'ensure' => 'file'})
 
     [
       /^#!\/bin\/bash$/,

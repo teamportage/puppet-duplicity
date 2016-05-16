@@ -8,6 +8,7 @@ describe 'duplicity', :type => :class do
     it {
       should contain_class('duplicity')
     }
+
     it {
       should contain_file('/var/spool/duplicity').with({
         'ensure'  => 'directory',
@@ -15,6 +16,15 @@ describe 'duplicity', :type => :class do
         'purge' => true
       })
     }
+
+    it {
+      should contain_file('/var/log/duplicity').with({
+        'ensure'  => 'directory',
+        'recurse' => true,
+        'purge' => true
+      })
+    }
+
     ['duplicity', 'gnupg2'].each do |package|
       it {
         should contain_package("#{package}").with({
