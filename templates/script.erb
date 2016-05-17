@@ -10,6 +10,9 @@ if [ -f $LOCK_FILE ]; then
     exit 1
 fi
 touch $LOCK_FILE
+trap "rm -f $LOCK_FILE" SIGINT SIGTERM
+
+exit_code=0
 
 <%- @pre_commands.each do |cmd| -%>
 <%= cmd %>
@@ -29,6 +32,8 @@ duplicity \
   / \
   <%= @target_url %>
 
+exit_code=$?
+
 <%- if @remove_older_than != false -%>
 duplicity \
   remove-older-than <%= @remove_older_than -%> \
@@ -41,8 +46,8 @@ duplicity \
   <%= @target_url %>
 <%- end -%>
 
-rm $LOCK_FILE
-
 <%- @post_commands.each do |cmd| -%>
 <%= cmd %>
 <%- end -%>
+
+exit $exit_code
