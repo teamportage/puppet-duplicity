@@ -10,7 +10,7 @@ if [ -f $LOCK_FILE ]; then
     exit 1
 fi
 touch $LOCK_FILE
-trap "rm -f $LOCK_FILE" SIGINT SIGTERM
+trap "rm -f $LOCK_FILE" EXIT SIGINT SIGTERM
 
 exit_code=0
 
