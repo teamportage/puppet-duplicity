@@ -52,7 +52,7 @@ describe 'duplicity::job', :type => :define do
 
   it {
     should contain_cron("#{script_file}") \
-      .with_command("#{script_file} >/var/log/duplicity/test.log || echo 'Duplicity backup failed'") \
+      .with_command("#{script_file} >>/var/log/duplicity/test.log || echo 'Duplicity backup failed'") \
       .with_hour(4) \
       .with_minute(0)
   }

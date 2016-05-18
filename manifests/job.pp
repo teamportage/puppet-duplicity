@@ -30,7 +30,7 @@ define duplicity::job(
   } ->
   cron { $script_path:
     ensure  => present,
-    command => "${script_path} >${log_path} || echo 'Duplicity backup failed'",
+    command => "${script_path} >>${log_path} || echo 'Duplicity backup failed'",
     hour    => $hour,
     minute  => $minute
   }
