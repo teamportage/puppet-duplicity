@@ -46,6 +46,16 @@ duplicity \
   <%= @target_url %>
 <%- end -%>
 
+duplicity \
+  cleanup --force \
+  <%- @_flags.each do |flag| -%>
+  <%= flag -%> \
+  <%- end -%>
+  <%- @_options.sort.each do |key,val| -%>
+  <%= key -%> <%= val -%> \
+  <%- end -%>
+  <%= @target_url %>
+
 <%- @post_commands.each do |cmd| -%>
 <%= cmd %>
 <%- end -%>
